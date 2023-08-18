@@ -5,6 +5,7 @@ import EventsDetailPage from "./routes/EventsDetailPage";
 import NewEventPage from "./routes/NewEventPage";
 import EditEventPage from "./routes/EditEventPage";
 import RootLayout from "./routes/Root";
+import EventsRoot from "./routes/EventsRoot";
 
 const router = createBrowserRouter([
   {
@@ -12,16 +13,22 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: "events", element: <EventsPage /> },
-      { path: "events:eventId", element: <EventsDetailPage /> },
-      { path: "events/new", element: <NewEventPage /> },
-      { path: "events/:eventId/edit", element: <EditEventPage /> },
+      {
+        path: "events",
+        element: <EventsRoot />,
+        children: [
+          { index: true, element: <EventsPage /> },
+          { path: "eventId", element: <EventsDetailPage /> },
+          { path: "new", element: <NewEventPage /> },
+          { path: "eventId/edit", element: <EditEventPage /> },
+        ],
+      },
     ],
   },
 ]);
 
 function App() {
-  return <div></div>;
+  return <RouterProvider router={router} />;
 }
 
 export default App;
