@@ -1,5 +1,8 @@
 {
   "devDependencies": {
     "concurrently": "^8.2.1"
+  },
+  "dependencies": {
+    "react-router-dom": "^6.4.1"
   }
 }
